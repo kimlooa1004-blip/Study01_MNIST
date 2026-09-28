@@ -1,0 +1,9 @@
+# MNIST 원본 데이터 (약 64MB, train.py 실행 시 자동으로 내려받는다)
+desktop_version/data/
+
+# 파이썬 캐시
+__pycache__/
+*.pyc
+
+# 검증용 임시 파일
+web_version/_test_fixture.json

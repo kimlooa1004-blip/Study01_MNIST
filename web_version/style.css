@@ -1,0 +1,210 @@
+/* 손글씨 숫자 인식기 화면 꾸미기
+   아이콘과 같은 어두운 남색 계열로 맞추고, 휴대폰 화면에서도 보이도록 한다. */
+
+:root {
+  --바탕색: #0f1623;
+  --칸색: #18202e;
+  --테두리색: #2b3648;
+  --글자색: #e8edf5;
+  --흐린글자: #9aa8bd;
+  --강조색: #60a5fa;
+  --성공색: #34d399;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0 16px 40px;
+  background: var(--바탕색);
+  color: var(--글자색);
+  font-family: "맑은 고딕", "Malgun Gothic", system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+/* 학번·이름 — 화면 맨 위에 항상 잘 보이게 */
+.학생정보 {
+  margin: 0 -16px 24px;
+  padding: 14px 16px;
+  background: var(--강조색);
+  color: #0b1220;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.머리말 {
+  max-width: 860px;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+
+.머리말 h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.설명 {
+  margin: 0;
+  color: var(--흐린글자);
+  font-size: 15px;
+}
+
+.본문 {
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.그림판칸, .결과칸 {
+  background: var(--칸색);
+  border: 1px solid var(--테두리색);
+  border-radius: 16px;
+  padding: 20px;
+}
+
+.그림판칸 { text-align: center; }
+
+#그림판 {
+  width: 280px;
+  height: 280px;
+  max-width: 100%;
+  background: #000;
+  border-radius: 12px;
+  border: 1px solid var(--테두리색);
+  cursor: crosshair;
+  touch-action: none;        /* 손가락으로 그릴 때 화면이 따라 스크롤되지 않게 */
+}
+
+.버튼줄 {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.단추 {
+  flex: 1;
+  padding: 11px 16px;
+  border-radius: 10px;
+  border: 1px solid var(--테두리색);
+  font-size: 15px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+
+.단추:hover { filter: brightness(1.15); }
+.단추:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.주요 { background: var(--강조색); color: #0b1220; font-weight: 700; border-color: transparent; }
+.보조 { background: transparent; color: var(--글자색); }
+
+.안내문 {
+  margin: 12px 0 0;
+  min-height: 22px;
+  font-size: 13px;
+  color: var(--흐린글자);
+}
+
+.결과칸 { min-width: 260px; flex: 1; max-width: 320px; }
+
+.큰결과 {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--테두리색);
+}
+
+#예측숫자 {
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--성공색);
+}
+
+.확신도 { font-size: 16px; color: var(--흐린글자); }
+
+.확률목록 {
+  list-style: none;
+  margin: 16px 0;
+  padding: 0;
+}
+
+.확률줄 {
+  display: grid;
+  grid-template-columns: 20px 1fr 48px;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+}
+
+.확률줄 .숫자 { color: var(--흐린글자); text-align: center; }
+.확률줄.으뜸 .숫자 { color: var(--성공색); font-weight: 700; }
+
+.막대바탕 {
+  height: 8px;
+  background: #101826;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.막대 {
+  display: block;        /* span은 기본이 inline이라 너비 지정이 먹지 않는다 */
+  height: 100%;
+  width: 0;
+  background: var(--테두리색);
+  border-radius: 999px;
+  transition: width 0.18s ease-out;
+}
+
+.확률줄.으뜸 .막대 { background: var(--성공색); }
+.확률줄 .값 { color: var(--흐린글자); text-align: right; }
+
+.미리보기칸 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid var(--테두리색);
+  font-size: 12px;
+  color: var(--흐린글자);
+}
+
+#전처리미리보기 {
+  width: 84px;
+  height: 84px;
+  flex-shrink: 0;
+  background: #000;
+  border-radius: 8px;
+  border: 1px solid var(--테두리색);
+  image-rendering: pixelated;   /* 28x28을 확대해도 또렷한 네모로 보이게 */
+}
+
+.미리보기칸 p { margin: 0; }
+
+.꼬리말 {
+  max-width: 860px;
+  margin: 32px auto 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--흐린글자);
+}
+
+.꼬리말 a { color: var(--강조색); }
+
+/* 화면이 좁으면 위아래로 쌓는다 */
+@media (max-width: 720px) {
+  .본문 { flex-direction: column; align-items: stretch; }
+  .결과칸 { max-width: none; }
+  .학생정보 { font-size: 17px; }
+  .머리말 h1 { font-size: 23px; }
+}
