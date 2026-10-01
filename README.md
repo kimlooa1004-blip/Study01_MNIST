@@ -62,6 +62,7 @@ Study01_MNIST/
 ├── index.html              웹 앱으로 보내는 안내 페이지
 ├── CLAUDE.md               저장소 전체 지침
 ├── CLAUDE_전역.md          전역 CLAUDE.md 사본
+├── 대화기록/               클로드와의 대화 기록
 ├── desktop_version/
 │   ├── CLAUDE.md
 │   ├── model.py            CNN 구조

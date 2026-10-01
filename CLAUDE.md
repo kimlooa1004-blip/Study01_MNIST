@@ -11,6 +11,7 @@ MNIST 자료로 학습한 CNN으로 손글씨 숫자(0~9)를 인식하는 과제
 | `desktop_version/` | PyTorch 학습 코드 + tkinter 데스크톱 앱 |
 | `web_version/` | 깃허브 페이지로 배포되는 웹 앱 (자바스크립트 추론) |
 | `CLAUDE_전역.md` | 전역 CLAUDE.md 사본 (과제 제출용) |
+| `대화기록/` | 클로드와 주고받은 대화 기록 (과제 제출용) |
 
 ## 작성 규칙
 
